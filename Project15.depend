@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1658592869 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Category.cpp
+
+1658592580 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Json.cpp
+
+1643041628 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/main.cpp
+	<iostream>
+
+1658592630 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/PriorityQueue.cpp
+
+1658592617 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Purchase.cpp
+
+1658601599 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Utils.cpp
+	<bits/stdc++.h>
+
+1658762966 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Date.cpp
+	"Date.h"
+
+1658762976 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Date.h
+	<bits/stdc++.h>
+
+1658759203 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/HashMap.cpp
+	"HashMap.h"
+
+1658759216 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/HashMap.h
+	<bits/stdc++.h>
+
+1658760122 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/CircularQueue.cpp
+	"CircularQueue.h"
+
+1658759289 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/CircularQueue.h
+	<bits/stdc++.h>
+
+1658760214 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/AVL.cpp
+	"AVL.h"
+
+1658758834 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/AVL.h
+	<bits/stdc++.h>
+
+1658760464 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Customer.cpp
+	"Customer.h"
+
+1658760365 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/Customer.h
+	<bits/stdc++.h>
+
+1658760501 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/BPlusTree.cpp
+	"BPlusTree.h"
+
+1658760526 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project/Project15/BPlusTree.h
+	<bits/stdc++.h>
+
