@@ -33,7 +33,8 @@ template <typename Node, typename Key>
 BPlusNode<Node, Key>::BPlusNode(int max_size) {
 	key = new Key[max_size];
     data = new Node*[max_size];
-	ptr = new BPlusNode<Node, Key>*[max_size + 1];
+	ptr = new BPlusNode<Node, Key>*[max_size + 1]{};
+	cnt = 0;
 }
 
 template <typename Node, typename Key>
@@ -120,7 +121,7 @@ void BPTree<Node, Key>::addItem(Node* data, Key key) {
 			int i = 0;
 			while (key > temp_key[i] && i < max_size) i++;
 
-			for (int j = max_size + 1; j > i; j--) {
+			for (int j = max_size; j > i; j--) {
 				temp_key[j] = temp_key[j - 1];
 				temp_data[j] = temp_data[j - 1];
 			}
@@ -201,14 +202,14 @@ void BPTree<Node, Key>::insertInternal(Key key, BPlusNode<Node, Key>* current, B
 		int i = 0;
         while (key > temp_key[i] && i < max_size) i++;
 
-        for (int j = max_size + 1; j > i; j--) {
+        for (int j = max_size; j > i; j--) {
             temp_key[j] = temp_key[j - 1];
         }
 
 		temp_key[i] = key;
 
 
-		for (int j = max_size + 2; j > i + 1; j--) {
+		for (int j = max_size + 1; j > i + 1; j--) {
             temp_ptr[j] = temp_ptr[j - 1];
 		}
 
@@ -322,7 +323,7 @@ Node** BPTree<Node, Key>::searchRange(Key start, Key end) {
             current = current->ptr[i];
         }
 
-        do {
+        while(current != NULL && current->cnt != 0) {
             for (int i = 0; i < current->cnt; i++) {
                 if (current->key[i] >= start && current->key[i] <= end) {
                     if(current->data[i] != NULL) {
@@ -333,7 +334,6 @@ Node** BPTree<Node, Key>::searchRange(Key start, Key end) {
             }
             current = current->ptr[current->cnt];
         }
-        while(current != NULL && current->key[0] > end);
 
         return result;
     }

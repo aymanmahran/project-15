@@ -48,7 +48,9 @@ Purchases::Purchases(): purchases(10) {
     purchases_json = data["purchases"];
 
     for (auto it = purchases_json.begin(); it != purchases_json.end(); ++it){
-        long long id = stoll((string) it.value());
+        string s = (string) it.value();
+        if(s == "") continue;
+        long long id = stoll(s);
         PurchaseNode* purchase = new PurchaseNode(id);
         purchases.enqueue(purchase);
     }
@@ -68,7 +70,10 @@ void Purchases::addPurchase(long long customer_id) {
 
 void Purchases::printPurchases() {
     PurchaseNode** cq = purchases.getAll();
-    for(int i = 0; i < 10; i++) cout << cq[i]->customer_id << endl;
+    for(int i = 0; i < 10; i++) {
+        if(cq[i] != NULL)
+            cout << cq[i]->customer_id << endl;
+    }
 }
 
 void Purchases::saveData() {

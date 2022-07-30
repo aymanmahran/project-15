@@ -89,5 +89,30 @@ void CircularQueue<Node>::printQueue() {
 
 template <typename Node>
 Node** CircularQueue<Node>::getAll() {
-    return arr;
+    Node** temp = new Node*[size]{};
+
+    if (front == -1) {
+        return temp;
+    }
+
+    int j = 0;
+
+    if (rear >= front) {
+        for (int i = front; i <= rear; i++) {
+            temp[j] = arr[i];
+            j++;
+        }
+    }
+    else {
+        for (int i = front; i < size; i++) {
+            temp[j] = arr[i];
+            j++;
+        }
+
+        for (int i = 0; i <= rear; i++) {
+            temp[j] = arr[i];
+            j++;
+        }
+    }
+    return temp;
 }

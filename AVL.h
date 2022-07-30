@@ -9,7 +9,7 @@ class AVLNode {
   public:
     Key key;
     int height;
-    Node *data;
+    Node* data;
     AVLNode<Node, Key>* left;
     AVLNode<Node, Key>* right;
 };
@@ -20,6 +20,7 @@ class AVL {
     AVL();
     void addItem(Node *data, Key key);
     void removeItem(Key key);
+    void printAll();
     Node* searchItem(Key key);
 
   private:
@@ -30,6 +31,7 @@ class AVL {
     int height(AVLNode<Node, Key> *node);
     AVLNode<Node, Key> *createAVLNode(Node *data, Key key);
     AVLNode<Node, Key> *search(AVLNode<Node, Key>* node, Key key);
+    void traverse(AVLNode<Node, Key>* node);
     AVLNode<Node, Key> *deleteNode(AVLNode<Node, Key> *node, Key key);
     AVLNode<Node, Key> *getMinVal(AVLNode<Node, Key> *node);
 
@@ -58,6 +60,11 @@ Node* AVL<Node, Key>::searchItem(Key key) {
   AVLNode<Node, Key>* node = search(root, key);
   if(node != NULL) return node->data;
   else return NULL;
+}
+
+template <typename Node, typename Key>
+void AVL<Node, Key>::printAll() {
+    traverse(root);
 }
 
 template <typename Node, typename Key>
@@ -158,6 +165,18 @@ AVLNode<Node, Key>* AVL<Node, Key>::search(AVLNode<Node, Key>* node, Key key) {
   else if (key > node->key) {
     return search(node->right, key);
   }
+}
+
+template <typename Node, typename Key>
+void AVL<Node, Key>::traverse(AVLNode<Node, Key>* node) {
+    if (node == NULL) {
+        return;
+    }
+
+    cout << *(node->data) << endl;
+
+    traverse(node->left);
+    traverse(node->right);
 }
 
 template <typename Node, typename Key>

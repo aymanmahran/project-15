@@ -14,9 +14,11 @@ class ProductNode {
   public:
     long long id;
     string name;
+    string category;
     float price;
     Date expiry_date;
-    ProductNode(string _name, float _price, Date _expiry_date, long long id);
+    ProductNode(string _name, string _category, float _price, Date _expiry_date, long long id);
+    friend ostream& operator<< (ostream& os, const ProductNode& node);
 };
 
 class CategoryNode {
@@ -43,15 +45,22 @@ class Products {
         string searchById(long long id);
         string searchByPrice(float start, float end);
         string getLastExpiry();
+        void printAll(string category);
         void removeExpired();
         void saveData();
 };
 
-ProductNode::ProductNode(string _name, float _price, Date _expiry_date, long long _id) {
+ProductNode::ProductNode(string _name, string _category, float _price, Date _expiry_date, long long _id) {
   name = _name;
+  category = _category;
   price = _price;
   expiry_date = _expiry_date;
   id = _id;
+}
+
+ostream& operator<< (ostream& os, const ProductNode& node) {
+    os << node.name << " " << node.price;
+    return os;
 }
 
 CategoryNode::CategoryNode(string _name, int _key, AVL<ProductNode, long long>* products) {
@@ -92,7 +101,7 @@ Products::Products(): categories(1000), prices(5), expiry() {
          for (auto it2 = c.begin(); it2 != c.end(); ++it2){
             string id = it2.key();
             json p = products_json[c_id][id];
-            ProductNode* product = new ProductNode(p["name"], stof((string)p["price"]), Date(p["expiry_date"]), stoll(id));
+            ProductNode* product = new ProductNode(p["name"], c_id, stof((string)p["price"]), Date(p["expiry_date"]), stoll(id));
             products->addItem(product, stoll(id));
             prices.addItem(product, stof((string)p["price"]));
             expiry.push(product, Date(p["expiry_date"]));
@@ -103,7 +112,7 @@ Products::Products(): categories(1000), prices(5), expiry() {
 }
 
 long long Products::addProduct(string name, string category_name, float price, Date expiry_date) {
-    ProductNode* product = new ProductNode(name, price, expiry_date, last_id);
+    ProductNode* product = new ProductNode(name, category_name, price, expiry_date, last_id);
     int key = getCategoryKey(category_name);
     CategoryNode* c = categories.getItem(key);
     if (c == NULL) {
@@ -174,14 +183,27 @@ string Products::getLastExpiry() {
     }
 
     if(product != NULL) {
-        return product->name;
+        return product->name + ": " + product->expiry_date.toString();
     }
     else{
         return "N/A";
     }
 }
 
+void Products::printAll(string category) {
+    int key = getCategoryKey(category);
+    CategoryNode* c = categories.getItem(key);
+    if (c == NULL) {
+        cout << "Invalid category" << endl;
+        return;
+    }
+    AVL<ProductNode, long long>* products = c->getProductsTree();
+    products->printAll();
+}
+
 void Products::removeExpired() {
+    ProductNode* product = expiry.peek();
+    removeProduct(product->category, product->id);
     expiry.pop();
     return;
 }

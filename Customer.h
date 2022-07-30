@@ -33,8 +33,8 @@ class Customers {
     public:
         Customers();
         long long addCustomer(string first_name, string last_name, string email, string phone);
-        void deleteCustomer(long long id);
-        void searchCustomer(long long id);
+        void removeCustomer(long long id);
+        string searchCustomer(long long id);
         void saveData();
 };
 
@@ -87,15 +87,15 @@ long long Customers::addCustomer(string first_name, string last_name, string ema
     return last_id++;
 }
 
-void Customers::deleteCustomer(long long id) {
+void Customers::removeCustomer(long long id) {
     customers.removeItem(id);
     customers_json.erase(to_string(id));
 }
 
-void Customers::searchCustomer(long long id) {
+string Customers::searchCustomer(long long id) {
     CustomerNode* customer = customers.searchItem(id);
-    if(customer != NULL) cout << customer->first_name << " " << customer->last_name << endl;
-    else cout << "Not found" << endl;
+    if(customer != NULL) return customer->first_name + " " + customer->last_name;
+    else return "N/A";
 }
 
 void Customers::saveData() {
