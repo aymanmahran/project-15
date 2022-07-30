@@ -1,0 +1,23 @@
+{
+    "customers": {
+        "10000000": {
+            "email": "aa@a.ca",
+            "first_name": "Ayman",
+            "last_name": "Mahran",
+            "phone": "709219"
+        },
+        "10000001": {
+            "email": "aa.ca",
+            "first_name": "B",
+            "last_name": "C",
+            "phone": "219"
+        },
+        "10000003": {
+            "email": "aa.ca",
+            "first_name": "amro",
+            "last_name": "gmal",
+            "phone": "219"
+        }
+    },
+    "last_id": "10000004"
+}
