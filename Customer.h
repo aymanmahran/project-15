@@ -8,7 +8,7 @@ using json = nlohmann::json;
 using namespace std;
 
 class CustomerNode {
-    long long id;
+    int id;
     string first_name;
     string last_name;
     string email;
@@ -18,7 +18,7 @@ class CustomerNode {
         string _last_name,
         string _email,
         string _phone,
-        long long _id);
+        int _id);
 
     friend class Customers;
 };
@@ -27,14 +27,14 @@ class Customers {
 
     private:
         json customers_json;
-        AVL<CustomerNode, long long> customers;
-        long long last_id;
+        AVL<CustomerNode, int> customers;
+        int last_id;
 
     public:
         Customers();
-        long long addCustomer(string first_name, string last_name, string email, string phone);
-        void removeCustomer(long long id);
-        string searchCustomer(long long id);
+        int addCustomer(string first_name, string last_name, string email, string phone);
+        void removeCustomer(int id);
+        string searchCustomer(int id);
         void saveData();
 };
 
@@ -43,7 +43,7 @@ CustomerNode::CustomerNode(string _first_name,
           string _last_name,
           string _email,
           string _phone,
-          long long _id) {
+          int _id) {
 
   first_name = _first_name;
   last_name = _last_name;
@@ -57,7 +57,7 @@ Customers::Customers(): customers() {
     json data = Utils::readJson("Customers_data.json");
     if (data == NULL) {
         json temp;
-        temp["last_id"] = "10000000";
+        temp["last_id"] = "10000";
         temp["customers"] = {};
         data = temp;
         Utils::writeJson("Customers_data.json", data);
@@ -65,36 +65,43 @@ Customers::Customers(): customers() {
     }
 
     if(data.contains("last_id"))
-        last_id = stoll(data["last_id"].get<std::string>());
+        last_id = stoi(data["last_id"].get<std::string>());
     else
-        last_id = 10000000;
+        last_id = 10000;
 
     customers_json = data["customers"];
 
     for (auto it = customers_json.begin(); it != customers_json.end(); ++it){
         string id = it.key();
         json c = customers_json[id];
-        CustomerNode* customer = new CustomerNode(c["first_name"], c["last_name"], c["email"], c["phone"], stoll(id));
-        customers.addItem(customer, stoll(id));
+        CustomerNode* customer = new CustomerNode(c["first_name"], c["last_name"], c["email"], c["phone"], stoi(id));
+        customers.addItem(customer, stoi(id));
     }
 
 }
 
-long long Customers::addCustomer(string first_name, string last_name, string email, string phone) {
+int Customers::addCustomer(string first_name, string last_name, string email, string phone) {
     CustomerNode* customer = new CustomerNode(first_name, last_name, email, phone, last_id);
     customers.addItem(customer, last_id);
     customers_json[to_string(last_id)] = { {"first_name", first_name}, {"last_name", last_name}, {"email", email}, {"phone", phone} };
     return last_id++;
 }
 
-void Customers::removeCustomer(long long id) {
+void Customers::removeCustomer(int id) {
     customers.removeItem(id);
     customers_json.erase(to_string(id));
 }
 
-string Customers::searchCustomer(long long id) {
+string Customers::searchCustomer(int id) {
     CustomerNode* customer = customers.searchItem(id);
-    if(customer != NULL) return customer->first_name + " " + customer->last_name;
+    string ret = "";
+    if(customer != NULL) {
+        ret = "First name: " + customer->first_name + "\n";
+        ret = ret + "Last name: " + customer->last_name + "\n";
+        ret = ret + "Email: " + customer->email + "\n";
+        ret = ret + "Phone: " + customer->phone + "\n";
+        return ret;
+    }
     else return "N/A";
 }
 

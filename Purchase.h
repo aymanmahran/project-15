@@ -70,7 +70,7 @@ void Purchases::addPurchase(long long customer_id) {
 
 void Purchases::printPurchases() {
     PurchaseNode** cq = purchases.getAll();
-    for(int i = 0; i < 10; i++) {
+    for(int i = 9; i >= 0; i--) {
         if(cq[i] != NULL)
             cout << cq[i]->customer_id << endl;
     }

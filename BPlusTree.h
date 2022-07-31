@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include "ArrayList.h"
+
 using namespace std;
 
 template <typename Node, typename Key>
@@ -23,8 +25,7 @@ class BPTree {
         BPTree(int _max_size);
         BPlusNode<Node, Key>* searchItem(Key key);
         void addItem(Node* data, Key key);
-        //void searchRange(Key start, Key end);
-        Node** searchRange(Key start, Key end);
+        ArrayList<Node*>* searchRange(Key start, Key end);
         void removeItem(Node* data, Key key);
 };
 
@@ -269,51 +270,16 @@ BPlusNode<Node, Key>* BPTree<Node, Key>::findParent(BPlusNode<Node, Key>* curren
 
     return parent;
 }
-/*
+
 template <typename Node, typename Key>
-void BPTree<Node, Key>::searchRange(Key start, Key end) {
+ArrayList<Node*>* BPTree<Node, Key>::searchRange(Key start, Key end) {
 
     if (root == NULL) {
         cout << "Not found" << endl;
     }
 
     else {
-
-        BPlusNode<Node, Key>* current = root;
-
-        while (current->leaf == false) {
-            int i = 0;
-            while (i < current->cnt && start > current->key[i]) i++;
-            current = current->ptr[i];
-        }
-
-        bool flag = false;
-        do {
-            for (int i = 0; i < current->cnt; i++) {
-                if (current->key[i] >= start && current->key[i] <= end) {
-                    cout << current->data[i]->name << endl;
-                    flag = true;
-                }
-            }
-            current = current->ptr[current->cnt];
-        }
-        while(current != NULL && current->key[0] > end);
-
-        if(!flag) cout << "Not found" << endl;
-    }
-}
-*/
-
-template <typename Node, typename Key>
-Node** BPTree<Node, Key>::searchRange(Key start, Key end) {
-
-    if (root == NULL) {
-        cout << "Not found" << endl;
-    }
-
-    else {
-        int j = 0;
-        Node** result = new Node*[100000]{};
+        ArrayList<Node*>* result = new ArrayList<Node*>(10000);
 
         BPlusNode<Node, Key>* current = root;
 
@@ -327,8 +293,7 @@ Node** BPTree<Node, Key>::searchRange(Key start, Key end) {
             for (int i = 0; i < current->cnt; i++) {
                 if (current->key[i] >= start && current->key[i] <= end) {
                     if(current->data[i] != NULL) {
-                        result[j] = current->data[i];
-                        j++;
+                        result->insertItem(current->data[i]);
                     }
                 }
             }

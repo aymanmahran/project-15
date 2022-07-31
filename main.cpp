@@ -25,6 +25,8 @@ void search_id_product_screen();
 void search_price_product_screen();
 void check_expiry_product_screen();
 void display_product_screen();
+void check_stock_product_screen();
+void update_stock_product_screen();
 void add_customer_screen();
 void remove_customer_screen();
 void search_id_customer_screen();
@@ -41,7 +43,9 @@ void products_screen() {
     cout << "4: Search products by price range" << endl;
     cout << "5: Check expiry dates" << endl;
     cout << "6: Display products in a category" << endl;
-    cout << "7: Go back" << endl;
+    cout << "7: Check product stock level" << endl;
+    cout << "8: Update stock level" << endl;
+    cout << "9: Go back" << endl;
     cin >> option;
 
     switch(option) {
@@ -64,6 +68,12 @@ void products_screen() {
             display_product_screen();
             break;
         case 7:
+            check_stock_product_screen();
+            break;
+        case 8:
+            update_stock_product_screen();
+            break;
+        case 9:
             return;
         default:
             cout << "Invalid option" << endl;
@@ -74,6 +84,7 @@ void products_screen() {
 void add_product_screen() {
     string name, category, date_string;
     float price;
+    int stock;
 
     clear_screen();
 
@@ -87,11 +98,14 @@ void add_product_screen() {
     cout << "Price: ";
     cin >> price;
 
+    cout << "Stock: ";
+    cin >> stock;
+
     cout << "Expiry date (dd-mm-yyyy): ";
     cin >> date_string;
     cout << endl;
 
-    long long id = products.addProduct(name, category, price, Date(date_string));
+    int id = products.addProduct(name, category, price, stock, Date(date_string));
 
     int option;
 
@@ -104,15 +118,11 @@ void add_product_screen() {
 
 
 void delete_product_screen() {
-    long long id;
-    string category;
+    int id;
 
     clear_screen();
 
     Delete_Product:
-
-    cout << "Enter the product category: ";
-    cin >> category;
 
     cout << "Enter the product ID to delete: ";
     cin >> id;
@@ -123,7 +133,7 @@ void delete_product_screen() {
         goto Delete_Product;
     }
 
-    products.removeProduct(category, id);
+    products.removeProduct(id);
 
     int option;
     cout << "Product deleted" << endl;
@@ -134,7 +144,7 @@ void delete_product_screen() {
 }
 
 void search_id_product_screen() {
-    long long id;
+    int id;
 
     clear_screen();
 
@@ -214,6 +224,61 @@ void check_expiry_product_screen() {
     goto Expired;
 }
 
+void check_stock_product_screen() {
+    int id;
+
+    clear_screen();
+
+    Check_Stock:
+
+    cout << "Enter the product ID: ";
+    cin >> id;
+    cout << endl;
+
+    if(products.searchById(id) == "N/A"){
+        cout << "Invalid ID" << endl;
+        goto Check_Stock;
+    }
+
+    cout << "Stock level: " << products.getStock(id) << endl << endl;
+
+    int option;
+    cout << "Press 1 to return" << endl;
+    cin >> option;
+
+    return;
+}
+
+void update_stock_product_screen() {
+    int id;
+
+    clear_screen();
+
+    Check_Stock:
+
+    cout << "Enter the product ID: ";
+    cin >> id;
+
+    if(products.searchById(id) == "N/A"){
+        cout << "Invalid ID" << endl << endl;
+        goto Check_Stock;
+    }
+
+    int stock;
+    cout << "Enter the amount of stock to add: ";
+    cin >> stock;
+    cout << endl;
+
+    products.addStock(id, stock);
+
+    int option;
+    cout << "Stock updated" << endl;
+    cout << "Press 1 to return" << endl;
+    cin >> option;
+
+    return;
+}
+
 void customers_screen() {
     int option;
     clear_screen();
@@ -262,7 +327,7 @@ void add_customer_screen() {
     cin >> phone;
     cout << endl;
 
-    long long id = customers.addCustomer(first_name, last_name, email, phone);
+    int id = customers.addCustomer(first_name, last_name, email, phone);
 
     int option;
 
@@ -274,7 +339,7 @@ void add_customer_screen() {
 }
 
 void remove_customer_screen() {
-    long long id;
+    int id;
 
     clear_screen();
 
@@ -300,7 +365,7 @@ void remove_customer_screen() {
 }
 
 void search_id_customer_screen() {
-    long long id;
+    int id;
 
     clear_screen();
 
@@ -322,7 +387,7 @@ void purchases_screen() {
     clear_screen();
 
     cout << "Choose an option:" << endl;
-    cout << "1: Add purchase" << endl;
+    cout << "1: New purchase" << endl;
     cout << "2: Customer history" << endl;
     cout << "3: Go back" << endl;
     cin >> option;
@@ -343,7 +408,7 @@ void purchases_screen() {
 }
 
 void add_purchase_screen() {
-    long long id;
+    int id;
 
     clear_screen();
 
@@ -360,13 +425,32 @@ void add_purchase_screen() {
 
     purchases.addPurchase(id);
 
-    int option;
+    cout << "Enter the IDs of purchased products" << endl;
+    cout << "Enter -1 to finish the purchase" << endl << endl;
 
-    cout << "Purchase recorded" << endl;
-    cout << "Press 1 to return" << endl;
-    cin >> option;
+    Add_Items:
 
-    return;
+    cout << "Product ID: ";
+    cin >> id;
+
+    if(id == -1) {
+        int option;
+
+        cout << endl << "Purchase recorded" << endl;
+        cout << "Press 1 to return" << endl;
+        cin >> option;
+
+        return;
+    }
+
+    if(products.searchById(id) == "N/A") {
+        cout << "Invalid ID" << endl;
+        goto Add_Items;
+    }
+
+    products.addStock(id, -1);
+    cout << "Product added" << endl;
+    goto Add_Items;
 }
 
 void quit_screen() {
@@ -396,7 +480,7 @@ int main() {
 
     clear_screen();
 
-    cout << "Hello Agwad!" << endl;
+    cout << "Welcome!" << endl;
 
     int option;
     cout << "Choose an option:" << endl;

@@ -12,7 +12,7 @@ class Date {
     Date(int _day, int _month, int _year);
     Date();
     Date(string date);
-    string toString();
+    string toString() const;
     bool operator == (const Date &date);
     bool operator != (const Date &date);
     bool operator > (const Date &date);
@@ -50,7 +50,7 @@ Date::Date(string date) {
     year = nums[2];
 }
 
-string Date::toString() {
+string Date::toString() const {
     return to_string(day) + "-" + to_string(month) + "-" + to_string(year);
 }
 
