@@ -1,0 +1,252 @@
+# depslib dependency file v1.0
+1659281004 source:/media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/main.cpp
+	<iostream>
+	"Product.h"
+	"Customer.h"
+	"Purchase.h"
+	"Date.h"
+
+1659279713 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/Product.h
+	<bits/stdc++.h>
+	"Date.h"
+	"json.hpp"
+	"Utils.h"
+	"AVL.h"
+	"HashMap.h"
+	"BPlusTree.h"
+	"PriorityQueue.h"
+
+1659279220 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/Date.h
+	<bits/stdc++.h>
+
+1659054864 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/json.hpp
+	<algorithm>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<type_traits>
+	<utility>
+	<algorithm>
+	<array>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<cstddef>
+	<exception>
+	<stdexcept>
+	<string>
+	<vector>
+	<array>
+	<cstddef>
+	<cstdint>
+	<string>
+	<utility>
+	<stdint.h>
+	<stdint.h>
+	<type_traits>
+	<version>
+	<cstdlib>
+	<cassert>
+	<compare>
+	<cstddef>
+	<cstddef>
+	<type_traits>
+	<utility>
+	<limits>
+	<type_traits>
+	<utility>
+	<tuple>
+	<iterator>
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<cstring>
+	<string>
+	<utility>
+	<experimental/filesystem>
+	<filesystem>
+	<algorithm>
+	<iterator>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<cstddef>
+	<iterator>
+	<string>
+	<tuple>
+	<utility>
+	<ranges>
+	<experimental/filesystem>
+	<filesystem>
+	<cstdint>
+	<tuple>
+	<utility>
+	<cstdint>
+	<cstddef>
+	<functional>
+	<algorithm>
+	<array>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<map>
+	<array>
+	<cstddef>
+	<cstring>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<type_traits>
+	<utility>
+	<cstdio>
+	<istream>
+	<cstddef>
+	<string>
+	<utility>
+	<vector>
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<cstdint>
+	<utility>
+	<string>
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<cstddef>
+	<limits>
+	<iterator>
+	<type_traits>
+	<cstddef>
+	<iterator>
+	<utility>
+	<algorithm>
+	<cctype>
+	<cerrno>
+	<cstdlib>
+	<iosfwd>
+	<limits>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<initializer_list>
+	<utility>
+	<algorithm>
+	<array>
+	<map>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<algorithm>
+	<cstddef>
+	<iterator>
+	<memory>
+	<string>
+	<vector>
+	<ios>
+	<ostream>
+	<algorithm>
+	<array>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<iomanip>
+	<type_traits>
+	<utility>
+	<array>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+	<functional>
+	<initializer_list>
+	<iterator>
+	<memory>
+	<stdexcept>
+	<type_traits>
+	<utility>
+	<vector>
+	<any>
+	<string_view>
+
+1659181788 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/Utils.h
+	<bits/stdc++.h>
+	"json.hpp"
+
+1659215811 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/AVL.h
+	<bits/stdc++.h>
+
+1659277457 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/HashMap.h
+	<bits/stdc++.h>
+	"ArrayList.h"
+
+1659277504 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/ArrayList.h
+	<bits/stdc++.h>
+
+1659273686 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/BPlusTree.h
+	<bits/stdc++.h>
+	"ArrayList.h"
+
+1659193165 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/PriorityQueue.h
+	<bits/stdc++.h>
+
+1659278471 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/Customer.h
+	<bits/stdc++.h>
+	"json.hpp"
+	"AVL.h"
+	"Utils.h"
+
+1659277701 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/Purchase.h
+	<bits/stdc++.h>
+	"json.hpp"
+	"CircularQueue.h"
+	"Utils.h"
+
+1659214056 /media/ayman/Shared Storage/MUN/T4/ECE4400/Assignments/Project15/CircularQueue.h
+	<bits/stdc++.h>
+

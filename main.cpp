@@ -11,7 +11,7 @@ Customers customers;
 Purchases purchases;
 
 void clear_screen() {
-    #ifdef WINDOWS
+    #ifdef _WIN32
         system("cls");
     #else
         system ("clear");
